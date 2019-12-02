@@ -1,0 +1,26 @@
+<html>
+<head>
+    <title>
+        {{ "Dataprivacy"|trans({},'admin') }}
+    </title>
+</head>
+<body>
+<h1>{{ "Dataprivacy"|trans({},'admin') }}</h1>
+{{ message|raw }}
+{{ 'general_explanation'|trans({},'admin') }}
+<form action="#" method="post">
+    {% for configurationsiteid,configuration in configurations %}
+        <h2>Seite {{ configurationsiteid }}</h2>
+        {% for configurationidentifier,configurationvalue in configuration %}
+            <label for="{{ configurationsiteid }}[{{ configurationidentifier }}]">{{ configurationidentifier|trans({},'admin') }}</label>
+            <input type="text" value="{{ configurationvalue }}" id="{{ configurationsiteid }}[{{ configurationidentifier }}]" name="{{ configurationsiteid }}[{{ configurationidentifier }}]" />
+            {% set trans_key = (configurationidentifier~'_helptext') %}
+            {% set trans_value = trans_key | trans({},'admin') %}
+            <p><small>{{ trans_key == trans_value ? '' : trans_value }}</small></p>
+        {% endfor %}
+        <br /><br />
+    {% endfor %}
+    <input type="submit" value="{{ 'Submit'|trans({},'admin') }}" />
+</form>
+</body>
+</html>

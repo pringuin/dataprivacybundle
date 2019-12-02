@@ -1,0 +1,5 @@
+pringuin_dataprivacy:
+    resource: "@pringuinDataprivacyBundle/Controller/"
+    type:     annotation
+    prefix:   /
+

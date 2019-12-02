@@ -1,0 +1,84 @@
+{% do pimcore_head_script().appendFile(asset('bundles/pringuindataprivacy/js/tarteaucitron/tarteaucitron.js')) %}
+<script>
+    tarteaucitron.init({
+        "privacyUrl": "{{ configuration.privacyUrl }}", /* Privacy policy url */
+
+        "hashtag": "{{ configuration.hashtag }}", /* Open the panel with this hashtag */
+        "cookieName": "{{ configuration.cookieName }}", /* Cookie name */
+
+        "orientation": "{{ configuration.orientation }}", /* Banner position (top - bottom) */
+        "showAlertSmall": {{ configuration.showAlertSmall }}, /* Show the small banner on bottom right */
+        "cookieslist": {{ configuration.cookieslist }}, /* Show the cookie list */
+
+        "adblocker": {{ configuration.adblocker }}, /* Show a Warning if an adblocker is detected */
+        "AcceptAllCta" : {{ configuration.AcceptAllCta }}, /* Show the accept all button when highPrivacy on */
+        "highPrivacy": {{ configuration.highPrivacy }}, /* Disable auto consent */
+        "handleBrowserDNTRequest": {{ configuration.handleBrowserDNTRequest }}, /* If Do Not Track == 1, disallow all */
+
+        "removeCredit": {{ configuration.removeCredit }}, /* Remove credit link */
+        "moreInfoLink": {{ configuration.moreInfoLink }}, /* Show more info link */
+        "useExternalCss": {{ configuration.useExternalCss }}, /* If false, the tarteaucitron.css file will be loaded */
+
+        "cookieDomain": "{{ configuration.useExternalCss }}", /* Shared cookie for subdomain website */
+
+        "readmoreLink": "{{ configuration.readmoreLink }}" /* Change the default readmore link pointing to opt-out.ferank.eu */
+    });
+{% for configurationidentifier,configurationvalue in configuration %}
+    {% if configurationvalue is not empty %}
+        {% if configurationidentifier == 'crazyeggId' %}
+            tarteaucitron.user.crazyeggId = '{{ configurationvalue }}';
+            (tarteaucitron.job = tarteaucitron.job || []).push('crazyegg');
+        {% elseif configurationidentifier == 'google_analytics_ga_js' %}
+            tarteaucitron.user.gajsUa = '{{ configurationvalue }}';
+            tarteaucitron.user.gajsMore = function () { /* add here your optionnal _ga.push() */ };
+            (tarteaucitron.job = tarteaucitron.job || []).push('gajs');
+        {% elseif configurationidentifier == 'google_analytics_gtag_js' %}
+            tarteaucitron.user.gtagUa = '{{ configurationvalue }}';
+            tarteaucitron.user.gtagMore = function () { /* add here your optionnal gtag() */ };
+            (tarteaucitron.job = tarteaucitron.job || []).push('gtag');
+        {% elseif configurationidentifier == 'google_analytics_gtag_js_multiple' %}
+            tarteaucitron.user.multiplegtagUa = [{{ configurationvalue }}];
+            (tarteaucitron.job = tarteaucitron.job || []).push('multiplegtag');
+        {% elseif configurationidentifier == 'google_analytics_universal' %}
+            tarteaucitron.user.analyticsUa = '{{ configurationvalue }}';
+            tarteaucitron.user.analyticsMore = function () { /* add here your optionnal ga.push() */ };
+            (tarteaucitron.job = tarteaucitron.job || []).push('analytics');
+        {% elseif configurationidentifier == 'google_adwordsremarketingId' %}
+            tarteaucitron.user.adwordsremarketingId = '{{ configurationvalue }}';
+            (tarteaucitron.job = tarteaucitron.job || []).push('googleadwordsremarketing');
+        {% elseif configurationidentifier == 'google_fonts_families' %}
+            tarteaucitron.user.googleFonts = '{{ configurationvalue }}';
+            (tarteaucitron.job = tarteaucitron.job || []).push('googlefonts');
+        {% elseif configurationidentifier == 'google_tag_manager' %}
+            tarteaucitron.user.googletagmanagerId = '{{ configurationvalue }}';
+            (tarteaucitron.job = tarteaucitron.job || []).push('googletagmanager');
+        {% elseif configurationidentifier == 'hubspot_api_key' %}
+            tarteaucitron.user.hubspotId = '{{ configurationvalue }}';
+            (tarteaucitron.job = tarteaucitron.job || []).push('hubspot');
+        {% elseif configurationidentifier == 'ekomi_cert_id' %}
+            tarteaucitron.user.ekomiCertId = '{{ configurationvalue }}';
+            (tarteaucitron.job = tarteaucitron.job || []).push('ekomi');
+        {% elseif configurationidentifier == 'etracker' %}
+            tarteaucitron.user.etracker = '{{ configurationvalue }}';
+            (tarteaucitron.job = tarteaucitron.job || []).push('etracker');
+        {% elseif configurationidentifier == 'facebook_pixel_id' %}
+            tarteaucitron.user.facebookpixelId = '{{ configurationvalue }}';
+            tarteaucitron.user.facebookpixelMore = function () { /* add here your optional facebook pixel function */ };
+            (tarteaucitron.job = tarteaucitron.job || []).push('facebookpixel');
+        {% elseif configurationidentifier == 'matomo_site_id' %}
+            {# We need matomo host here too - check for it #}
+            {% if configuration.matomo_host is defined and configuration.matomo_host is not empty %}
+                tarteaucitron.user.matomoId = '{{ configurationvalue }}';
+                tarteaucitron.user.matomoHost = "{{configuration.matomo_host}}";
+                (tarteaucitron.job = tarteaucitron.job || []).push('matomo');
+            {% endif %}
+        {% elseif configurationidentifier == 'mautic_url' %}
+            tarteaucitron.user.mauticurl = '{{ configurationvalue }}';
+            (tarteaucitron.job = tarteaucitron.job || []).push('mautic');
+        {% elseif configurationidentifier == 'zopimID' %}
+            tarteaucitron.user.zopimID = '{{ configurationvalue }}';
+            (tarteaucitron.job = tarteaucitron.job || []).push('zopim');
+        {% endif %}
+    {% endif %}
+{% endfor %}
+</script>
