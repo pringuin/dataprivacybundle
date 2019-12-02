@@ -7,6 +7,8 @@ Add dataprivacy features (GDPR / DSGVO) to Pimcore
 * Admin interface to configure trackers and tools
 * Frontend with cookie and tracking consent features
 
+![Backend Interface](docs/img/localized_admin_interface.png)
+
 ## Dependencies
 This bundle does include the great script [tarteaucitron.js](https://github.com/AmauriC/tarteaucitron.js) in the `pringuin/DataprivacyBundle/Resources/public/js/tarteaucitron` folder. 
 
@@ -46,6 +48,7 @@ To include the cookie consent into your frontend layout, you can use the followi
 ```
 Hint: You can always override this template by implementing your own template in the folder `PIMCOREINSTALLATION/app/Resources/pringuinDataprivacyBundle/views/default/default.html.twig`
 
+![Default Frontend Interface](docs/img/frontend_locale_cookie_consent.png)
 
 ## Supported Tackers and Tools
 This package does currently ship with the following trackers/tools integrations:
