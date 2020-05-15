@@ -55,10 +55,22 @@ class AdminController extends FrontendController
                         if(is_iterable($configurationdata)){
                             $result = Configurationhelper::setConfigurationForSite($siteid,$configurationdata);
                             if($result){
-                                $responsemessage .= '<div>Konfiguration für Seite '.$siteid.' erfolgreich gespeichert.</div>';
+                                $responsemessage .= '<div>'.$this
+                                        ->get('translator')
+                                        ->trans(
+                                            'configuration_save_success',
+                                            ['%site%' => $siteid],
+                                            'admin'
+                                        ).'</div>';
                             }
                             else{
-                                $responsemessage .= '<div>Fehler bei der Speicherung der Konfiguration für Seite '.$siteid.'!</div>';
+                                $responsemessage .= '<div>'.$this
+                                        ->get('translator')
+                                        ->trans(
+                                            'configuration_save_fail',
+                                            ['%site%' => $siteid],
+                                            'admin'
+                                        ).'</div>';
                             }
                         }
                     }
