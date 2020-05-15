@@ -10,7 +10,7 @@
 {{ 'general_explanation'|trans({},'admin') }}
 <form action="#" method="post">
     {% for configurationsiteid,configuration in configurations %}
-        <h2>Seite {{ configurationsiteid }}</h2>
+        <h2>{{ "site"|trans({},'admin') }} {{ configurationsiteid }}</h2>
         {% for configurationidentifier,configurationvalue in configuration %}
             <label for="{{ configurationsiteid }}[{{ configurationidentifier }}]">{{ configurationidentifier|trans({},'admin') }}</label>
             <input type="text" value="{{ configurationvalue }}" id="{{ configurationsiteid }}[{{ configurationidentifier }}]" name="{{ configurationsiteid }}[{{ configurationidentifier }}]" />

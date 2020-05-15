@@ -1,4 +1,5 @@
 Dataprivacy: "Data Protection"
+site: "Site"
 Submit: "Submit"
 general_explanation: "Set your data privacy settings here. You can set the current locale in all fields using %locale% dynamically."
 
@@ -26,3 +27,7 @@ matomo_host_helptext: "The URL to your matomo installation"
 mautic_url: "Mautic URL"
 zopimID: "zopim ID"
 zopimID_helptext: "Set your ID for zopim here"
+privacyUrl: "Privacy URL"
+privacyUrl_helptext: "If value is numeric, then will be taken Document by id."
+configuration_save_success: "Configuration for Site <b>%site%</b> saved successfully."
+configuration_save_fail: "Failed to save configuration for Site <b>%site%</b>!"

@@ -11,7 +11,7 @@ pimcore.plugin.pringuinDataprivacyBundle = Class.create(pimcore.plugin.admin, {
         this.navEl = Ext.get('pimcore_menu_search').insertSibling('<li id="pimcore_menu_dataprivacy" data-menu-tooltip="Datenschutz" class="pimcore_menu_item pimcore_menu_needs_children"><img src="/bundles/pimcoreadmin/img/flat-white-icons/keys.svg"></li>', 'after');
         this.menu = new Ext.menu.Menu({
             items: [{
-                text: "Datenschutz",
+                text: t("Dataprivacy"),
                 iconCls: "pimcore_icon_keys",
                 handler: this.openIndexPage
             }],

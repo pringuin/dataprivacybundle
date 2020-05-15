@@ -1,4 +1,5 @@
 Dataprivacy: "Datenschutz"
+site: "Seite"
 Submit: "Absenden"
 general_explanation: "Nachfolgend können Sie Ihre Einstellungen für den Datenschutz vornehmen. In allen Feldern können Sie die jeweilige Sprache über %locale% dynamisch setzen."
 
@@ -26,3 +27,7 @@ matomo_host_helptext: "Die URL zu Ihrer Matomo Installation"
 mautic_url: "Mautic URL"
 zopimID: "zopim ID"
 zopimID_helptext: "Setzen Sie Ihre ID für zopim hier"
+privacyUrl: "Privacy URL"
+privacyUrl_helptext: "Wenn hier eine Zahl eingegeben wird, wird das Dokument mit dieser ID verwendet."
+configuration_save_success: "Konfiguration für Seite <b>%site%</b> erfolgreich gespeichert."
+configuration_save_fail: "Fehler bei der Speicherung der Konfiguration für Seite <b>%site%</b>!"
