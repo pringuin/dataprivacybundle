@@ -3,6 +3,8 @@
 namespace pringuin\DataprivacyBundle\Controller;
 
 use Pimcore\Controller\FrontendController;
+use Pimcore\Model\Document;
+use Pimcore\Model\Document\Service;
 use Pimcore\Tool\Authentication;
 use pringuin\DataprivacyBundle\Helper\Configurationhelper;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,6 +36,17 @@ class DefaultController extends FrontendController
         foreach($configuration as $key => $value){
             if(strpos($value,'%locale%')){
                 $configuration[$key] = str_replace('%locale%',$request->getLocale(),$value);
+            }
+        }
+
+        if(is_numeric($configuration['privacyUrl'])){
+            $documentService = $this->get('pimcore.document_service');
+            $document = Document::getById($configuration['privacyUrl']);
+            $translations = $documentService->getTranslations($document);
+            if(!empty($translations[$request->getLocale()])){
+                $configuration['privacyUrl'] = Document::getById($translations[$request->getLocale()])->getFullPath();
+            } else {
+                $configuration['privacyUrl'] = $document->getFullPath();
             }
         }
 
