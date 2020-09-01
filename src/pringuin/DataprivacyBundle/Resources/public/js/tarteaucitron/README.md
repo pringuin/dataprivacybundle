@@ -1,4 +1,4 @@
-[![](https://data.jsdelivr.com/v1/package/gh/AmauriC/tarteaucitron.js/badge)](https://www.jsdelivr.com/package/gh/AmauriC/tarteaucitron.js) 
+[![](https://data.jsdelivr.com/v1/package/gh/AmauriC/tarteaucitron.js/badge)](https://www.jsdelivr.com/package/gh/AmauriC/tarteaucitron.js)
 [![npm](https://img.shields.io/npm/v/tarteaucitronjs.svg)](https://www.npmjs.com/package/tarteaucitronjs) [![GitHub contributors](https://img.shields.io/github/contributors/AmauriC/tarteaucitron.js.svg)](https://github.com/AmauriC/tarteaucitron.js/graphs/contributors)
 
 tarteaucitron.js
@@ -21,7 +21,7 @@ Bonus:
 
 
 # Installation guide
-[Visit opt-out.ferank.eu](https://opt-out.ferank.eu/)
+[Visit tarteaucitron.io](https://tarteaucitron.io/)
 
 
 # How to use
@@ -35,14 +35,14 @@ tarteaucitron.init({
 
     "hashtag": "#tarteaucitron", /* Open the panel with this hashtag */
     "cookieName": "tarteaucitron", /* Cookie name */
-    
-    "orientation": "top", /* Banner position (top - bottom) */
+
+    "orientation": "middle", /* Banner position (top - bottom) */
     "showAlertSmall": true, /* Show the small banner on bottom right */
     "cookieslist": true, /* Show the cookie list */
 
     "adblocker": false, /* Show a Warning if an adblocker is detected */
     "AcceptAllCta" : true, /* Show the accept all button when highPrivacy on */
-    "highPrivacy": false, /* Disable auto consent */
+    "highPrivacy": true, /* Disable auto consent */
     "handleBrowserDNTRequest": false, /* If Do Not Track == 1, disallow all */
 
     "removeCredit": false, /* Remove credit link */
@@ -50,8 +50,8 @@ tarteaucitron.init({
     "useExternalCss": false, /* If false, the tarteaucitron.css file will be loaded */
 
     //"cookieDomain": ".my-multisite-domaine.fr", /* Shared cookie for subdomain website */
-                          
-    "readmoreLink": "/cookiespolicy" /* Change the default readmore link pointing to opt-out.ferank.eu */
+
+    "readmoreLink": "/cookiespolicy" /* Change the default readmore link pointing to tarteaucitron.io */
 });
 </script>
 ```
@@ -60,7 +60,7 @@ tarteaucitron.init({
 ```js
 tarteaucitron.services.mycustomservice = {
   "key": "mycustomservice",
-  "type": "social|analytic|ads|video|support",
+  "type": "ads|analytic|api|comment|other|social|support|video",
   "name": "MyCustomService",
   "needConsent": true,
   "cookies": ['cookie', 'cookie2'],

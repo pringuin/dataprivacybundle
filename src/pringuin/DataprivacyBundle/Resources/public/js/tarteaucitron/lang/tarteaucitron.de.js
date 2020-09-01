@@ -1,5 +1,6 @@
 /*global tarteaucitron */
 tarteaucitron.lang = {
+    "middleBarHead": "☝ 🍪",
     "adblock": "Hallo! Diese Seite ist transparent und lässt Ihnen die Wahl der externen Services, die aktiviert werden dürfen.",
     "adblock_call": "Bitte deaktivieren Sie Ihren 'Werbeblocker' um Cookie-Einstellungen vornehmen zu können.",
     "reload": "Seite neu laden",
@@ -8,11 +9,11 @@ tarteaucitron.lang = {
     "alertBigClick": "Wenn Sie diese Webseite benutzen,",
     "alertBig": "stimmen Sie der Benutzung von externen Diensten zu",
     
-    "alertBigPrivacy": "Diese Webseite verwendet 'Cookies' und ermöglicht dadurch Kontrolle, welche Dienste benutzt werden dürfen",
+    "alertBigPrivacy": "Diese Webseite verwendet 'Cookies' um Inhalte und Anzeigen zu personalisieren und zu analysieren. Bestimmen Sie, welche Dienste benutzt werden dürfen",
     "alertSmall": "Datenschutz-Einstellungen",
     "personalize": "Personalisieren",
     "acceptAll": "Alle akzeptieren",
-    "close": "Beenden",
+    "close": "Schließen",
 
     "privacyUrl": "Datenschutzbestimmungen",
     
@@ -28,15 +29,15 @@ tarteaucitron.lang = {
     "useNoCookie": "Dieser Dienst hat keine 'Cookies' installiert.",
     "more": "Weiter lesen",
     "source": "Zur offiziellen Webseite",
-    "credit": "Cookies manager von tarteaucitron.js",
+    "credit": "Cookie Manager von tarteaucitron.js",
 
-    "toggleInfoBox": "Zeige/verberge Cookie-Einstellungen",
+    "toggleInfoBox": "Zeige/Verberge Cookie-Einstellungen",
     "title": "Cookie-Einstellungen",
     "cookieDetail": "Cookie Details für",
     "ourSite": "auf unserer Seite",
     "newWindow": "(neues Fenster)",
-    "allowAll": "Erlaube alle cookies",
-    "denyAll": "Verbiete alle cookies",
+    "allowAll": "Erlaube alle Cookies",
+    "denyAll": "Verbiete alle Cookies",
     
     "fallback": "ist deaktiviert.",
 
@@ -54,7 +55,7 @@ tarteaucitron.lang = {
     },
     "video": {
         "title": "Videos",
-        "details": "Videoplatformen erlauben Videoinhalte einzublenden und die Sichtbarkeit der Seite zu erhöhen."
+        "details": "Videoplattformen erlauben Videoinhalte einzublenden und die Sichtbarkeit der Seite zu erhöhen."
     },
     "comment": {
         "title": "Kommentare",
@@ -66,7 +67,7 @@ tarteaucitron.lang = {
     },
     "api": {
         "title": "APIs",
-        "details": "APIs werden benutzt um Skripte zu laden, wie: Geolokalisation, Suchmaschinen, Übersetzungen, ..."
+        "details": "APIs werden benutzt um Skripte zu laden, wie: Geolokalisierung, Suchmaschinen, Übersetzungen, ..."
     },
     "other": {
         "title": "Andere",

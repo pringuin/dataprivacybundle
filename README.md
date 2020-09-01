@@ -88,6 +88,7 @@ tarteaucitron.services.mycustomservice = {
     // when use deny cookie
   }
 };
+(tarteaucitron.job = tarteaucitron.job || []).push('mycustomservice');
 ```
 
 To get a tracker or tool which **is** included in the tarteaucitron.js package into this bundle, you'll have to do the following steps:
@@ -115,6 +116,15 @@ You can also append a `_helptext` to the key to insert a custom helptext for edi
 #### Final step
 Test your implementation and please create a pull request in this repository so everybody can now use your newly implemented service, tracker or tool.
 Thanks!
+
+## Updating
+
+### Updating from initial version or 0.1 to 0.2
+
+To update from the first release or version 0.1 to 0.2 simply adapt your composer.json and run composer update as usually.
+Depending on your installation you might need to run the command
+`php bin/console assets:install web`
+to install the new tarteaucitron.js version (1.4 is now included) if you installed as hard copy.
 
 ## Contributing
 While we consider this bundle stable and ready for productive use, we'd be very happy if you'd support us and the whole pimcore community by improving this bundle with pull requests. This is our first public pimcore bundle so constructive feedback would be very welcome aswell!

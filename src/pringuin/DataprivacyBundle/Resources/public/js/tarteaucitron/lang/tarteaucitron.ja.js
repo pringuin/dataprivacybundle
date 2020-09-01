@@ -1,7 +1,7 @@
 /*global tarteaucitron */
 tarteaucitron.lang = {
     "middleBarHead": "☝ 🍪",
-    "adblock": "Hello! This site is transparent and lets you choose the 3rd party services you want to allow.",
+    "adblock": "Hello! This site is transparent and lets you chose the 3rd party services you want to allow.",
     "adblock_call": "Please disable your adblocker to start customizing.",
     "reload": "Refresh the page",
     
@@ -9,36 +9,36 @@ tarteaucitron.lang = {
     "alertBigClick": "If you continue to browse this website,",
     "alertBig": "you are allowing all third-party services",
     
-    "alertBigPrivacy": "This site uses cookies and gives you control over what you want to activate",
+    "alertBigPrivacy": "当サイトはクッキーを利用しております。お客様自身でクッキー利用の設定および管理ができます。",
     "alertSmall": "Manage services",
-    "personalize": "Personalize",
-    "acceptAll": "OK, accept all",
+    "personalize": "カスタマイズする",
+    "acceptAll": "全てに同意する",
     "close": "Close",
 
-    "privacyUrl": "Privacy policy",
+    "privacyUrl": "プライバシーポリシー",
     
     "all": "Preference for all services",
 
     "info": "Protecting your privacy",
-    "disclaimer": "By allowing these third party services, you accept their cookies and the use of tracking technologies necessary for their proper functioning.",
-    "allow": "Allow",
-    "deny": "Deny",
+    "disclaimer": "これらの第三者によるサービスを許可することで、サイトの動作に必要なクッキーや他のトラッキング・テクノロジーの使用に同意するものとみなします。",
+    "allow": "許可",
+    "deny": "拒否",
     "noCookie": "This service does not use cookie.",
     "useCookie": "This service can install",
-    "useCookieCurrent": "This service has installed",
+    "useCookieCurrent": "このサービスは２つのクッキーを利用します",
     "useNoCookie": "This service has not installed any cookie.",
-    "more": "Read more",
-    "source": "View the official website",
+    "more": "もっと読む",
+    "source": "公式サイトで閲覧する",
     "credit": "Cookies manager by tarteaucitron.js",
     "noServices": "This website does not use any cookie requiring your consent.",
 
     "toggleInfoBox": "Show/hide informations about cookie storage",
-    "title": "Cookies management panel",
+    "title": "クッキー利用の管理について",
     "cookieDetail": "Cookie detail for",
     "ourSite": "on our site",
     "newWindow": "(new window)",
-    "allowAll": "Allow all cookies",
-    "denyAll": "Deny all cookies",
+    "allowAll": "すべてのクッキーを許可する",
+    "denyAll": "すべてのクッキーを拒否する",
     
     "fallback": "is disabled.",
 

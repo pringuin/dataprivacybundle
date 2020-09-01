@@ -30,6 +30,92 @@ tarteaucitron.services.iframe = {
     }
 };
 
+// amplitude
+tarteaucitron.services.amplitude = {
+    "key": "amplitude",
+    "type": "analytic",
+    "name": "Amplitude",
+    "uri": "https://amplitude.com/privacy",
+    "needConsent": true,
+    "cookies": [],
+    "js": function () {
+        "use strict";
+        if (tarteaucitron.user.amplitude === undefined) {
+            return;
+        }
+        tarteaucitron.addScript('https://cdn.amplitude.com/libs/amplitude-5.8.0-min.gz.js', '', function() {
+
+          window.amplitude = {
+             _q: [],
+             _iq: {}
+          };
+          function s(e,t){e.prototype[t]=function(){this._q.push([t].concat(Array.prototype.slice.call(arguments,0)));return this}}
+          var o=function(){this._q=[];return this};
+          var a=["add","append","clearAll","prepend","set","setOnce","unset"];
+          for(var u=0;u<a.length;u++){s(o,a[u])}
+          amplitude.Identify=o;
+          var c=function(){this._q=[];return this};
+          var l=["setProductId","setQuantity","setPrice","setRevenueType","setEventProperties"];
+          for(var p=0;p<l.length;p++){s(c,l[p])}
+          amplitude.Revenue=c;
+          var d=["init","logEvent","logRevenue","setUserId","setUserProperties","setOptOut","setVersionName","setDomain","setDeviceId","enableTracking","setGlobalUserProperties","identify","clearUserProperties","setGroup","logRevenueV2","regenerateDeviceId","groupIdentify","onInit","logEventWithTimestamp","logEventWithGroups","setSessionId","resetSessionId"];
+          function v(e){function t(t){e[t]=function(){e._q.push([t].concat(Array.prototype.slice.call(arguments,0)))}}for(var n=0;n<d.length;n++){t(d[n])}}
+          v(amplitude);
+          amplitude.getInstance=function(e){e=(!e||e.length===0?"$default_instance":e).toLowerCase();if(!amplitude._iq.hasOwnProperty(e)){amplitude._iq[e]={_q:[]};v(amplitude._iq[e])}return amplitude._iq[e]};
+
+          amplitude.getInstance().init(tarteaucitron.user.amplitude);
+        });
+    }
+};
+
+// abtasty
+tarteaucitron.services.abtasty = {
+    "key": "abtasty",
+    "type": "api",
+    "name": "ABTasty",
+    "uri": "https://www.abtasty.com/terms-of-use/",
+    "needConsent": true,
+    "cookies": ['ABTasty', 'ABTastySession'],
+    "js": function () {
+        "use strict";
+        if (tarteaucitron.user.abtastyID === undefined) {
+            return;
+        }
+        tarteaucitron.addScript('//try.abtasty.com/'+tarteaucitron.user.abtastyID+'.js');
+    }
+};
+
+
+// yandex metrica
+tarteaucitron.services.metrica = {
+    "key": "metrica",
+    "type": "analytic",
+    "name": "Yandex Metrica",
+    "uri": "https://yandex.com/legal/confidential/",
+    "needConsent": true,
+    "cookies": ['_ym_metrika_enabled','_ym_isad', '_ym_uid', '_ym_d','yabs-sid','_ym_debug','_ym_mp2_substs','_ym_hostIndex','_ym_mp2_track','yandexuid','usst'],
+    "js": function () {
+        "use strict";
+        if (tarteaucitron.user.yandexmetrica === undefined) {
+            return;
+        }
+        tarteaucitron.addScript('https://mc.yandex.ru/metrika/tag.js', '', function() {
+
+           (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+           (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+           ym(tarteaucitron.user.yandexmetrica, "init", {
+                clickmap:true,
+                trackLinks:true,
+                accurateTrackBounce:true,
+                webvisor:true,
+                ecommerce:"dataLayer"
+            });
+        });
+    }
+};
+
 // addthis
 tarteaucitron.services.addthis = {
     "key": "addthis",
@@ -434,6 +520,23 @@ tarteaucitron.services.clicmanager = {
         "use strict";
         var id = 'clicmanager';
         tarteaucitron.fallback(['clicmanager-canvas'], tarteaucitron.engage(id));
+    }
+};
+
+// contentsquare
+tarteaucitron.services.contentsquare = {
+    "key": "contentsquare",
+    "type": "api",
+    "name": "ContentSquare",
+    "uri": "https://docs.contentsquare.com/uxa-en/#collected-data",
+    "needConsent": true,
+    "cookies": ['_cs_id', '_cs_s', '_cs_vars', '_cs_ex', '_cs_c', '_cs_optout'],
+    "js": function () {
+        "use strict";
+        if (tarteaucitron.user.contentsquareID === undefined) {
+            return;
+        }
+        tarteaucitron.addScript('//t.contentsquare.net/uxa/'+tarteaucitron.user.contentsquareID+'.js');
     }
 };
 
@@ -1265,8 +1368,31 @@ tarteaucitron.services.googletagmanager = {
             'gtm.start': new Date().getTime(),
             event: 'gtm.js'
         });
-        tarteaucitron.addScript('//www.googletagmanager.com/gtm.js?id=' + tarteaucitron.user.googletagmanagerId);
+        tarteaucitron.addScript('https://www.googletagmanager.com/gtm.js?id=' + tarteaucitron.user.googletagmanagerId);
     }
+};
+
+// google webfonts
+tarteaucitron.services.googlefonts = {
+  "key": "googlefonts",
+  "type": "api",
+  "name": "Google Webfonts",
+  "uri": "https://www.google.com/intl/de/policies/privacy/",
+  "needConsent": true,
+  "cookies": [],
+  "js": function () {
+    "use strict";
+    if (tarteaucitron.user.googleFonts === undefined) {
+      return;
+    }
+    tarteaucitron.addScript('//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js', '', function () {
+      WebFont.load({
+        google: {
+          families: tarteaucitron.user.googleFonts
+        }
+      });
+    });
+  }
 };
 
 // hubspot
@@ -1377,9 +1503,10 @@ tarteaucitron.services.mautic = {
             return;
         }
 
-        window['MauticTrackingObject'] = 'mt';
-        window['mt'] = window['mt'] || function() {
-            (window['mt'].q = window['mt'].q || []).push(arguments);
+        window.MauticTrackingObject = 'mt';
+        window.mt = window.mt || function () {
+            window.mt.q = window.mt.q || [];
+            window.mt.q.push(arguments);
         };
 
         tarteaucitron.addScript(tarteaucitron.user.mauticurl, '', function() {
@@ -1552,6 +1679,41 @@ tarteaucitron.services.purechat = {
         });
     }
 };
+
+// rumbletalk
+tarteaucitron.services.rumbletalk = {
+    "key": "rumbletalk",
+    "type": "social",
+    "name": "RumbleTalk",
+    "needConsent": true,
+    "cookies": ['AWSALB'],
+    "js": function () {
+        "use strict";
+        if (tarteaucitron.user.rumbletalkid === undefined) {
+            return;
+        }
+
+        tarteaucitron.addScript('https://rumbletalk.com/client/?' + tarteaucitron.user.rumbletalkid);
+
+        tarteaucitron.fallback(['rumbletalk'], function (x) {
+            var width = tarteaucitron.getElemWidth(x),
+                height = tarteaucitron.getElemHeight(x),
+                id = x.getAttribute("data-id");
+
+                return '<div style="height: ' + height + 'px; width: ' + width + 'px;"><div id="' + id + '"></div></div>';
+      });
+    },
+    "fallback": function () {
+      "use strict";
+        var id = 'rumbletalk';
+            tarteaucitron.fallback(['rumbletalk'], function (elem) {
+                elem.style.width = tarteaucitron.getElemWidth(elem) + 'px';
+                elem.style.height = tarteaucitron.getElemHeight(elem) + 'px';
+
+                return tarteaucitron.engage(id);
+            });
+    }
+  };
 
 // shareaholic
 tarteaucitron.services.shareaholic = {
@@ -1960,7 +2122,6 @@ tarteaucitron.services.vimeo = {
 
                 video_frame;
 
-            var video_qs = '';
 
             if (video_id === undefined) {
                 return "";
@@ -1976,113 +2137,112 @@ tarteaucitron.services.vimeo = {
                 frame_height += '"" ';
             }
 
-            if (video_title.length > 0 || video_byline.length > 0 || video_portrait.length > 0) {
+            var video_qs = "?";
 
-                video_qs = "?";
+            if (video_title.length > 0) {
+                video_qs += "title=" + video_title;
+            }
 
-                if (video_title.length > 0) {
-                    video_qs += "title=" + video_title;
+            if (video_byline.length > 0) {
+                if (video_qs.length > 0) {
+                    video_qs += "&";
                 }
+                video_qs += "byline=" + video_byline;
+            }
 
-                if (video_byline.length > 0) {
-                    if (video_qs.length > 1) {
-                        video_qs += "&";
-                    }
-                    video_qs += "byline=" + video_byline;
+            if (video_portrait.length > 0) {
+                if (video_qs.length > 0) {
+                    video_qs += "&";
                 }
+                video_qs += "portrait=" + video_portrait;
+            }
 
-                if (video_portrait.length > 0) {
-                    if (video_qs.length > 1) {
-                        video_qs += "&";
-                    }
-                    video_qs += "portrait=" + video_portrait;
+            if (video_loop.length > 0) {
+                if (video_qs.length > 0) {
+                    video_qs += "&";
                 }
+                video_qs += "loop=" + video_loop;
+            }
 
-                if (video_loop.length > 0) {
-                    if (video_qs.length > 1) {
-                        video_qs += "&";
-                    }
-                    video_qs += "loop=" + video_loop;
+            if (video_autoplay.length > 0) {
+                if (video_qs.length > 0) {
+                    video_qs += "&";
                 }
+                video_qs += "autoplay=" + video_autoplay;
+            }
 
-                if (video_autoplay.length > 0) {
-                    if (video_qs.length > 1) {
-                        video_qs += "&";
-                    }
-                    video_qs += "autoplay=" + video_autoplay;
+            if (video_autopause.length > 0) {
+                if (video_qs.length > 0) {
+                    video_qs += "&";
                 }
+                video_qs += "autopause=" + video_autopause;
+            }
 
-                if (video_autopause.length > 0) {
-                    if (video_qs.length > 1) {
-                        video_qs += "&";
-                    }
-                    video_qs += "autopause=" + video_autopause;
+            if (video_background.length > 0) {
+                if (video_qs.length > 0) {
+                    video_qs += "&";
                 }
+                video_qs += "background=" + video_background;
+            }
 
-                if (video_background.length > 0) {
-                    if (video_qs.length > 1) {
-                        video_qs += "&";
-                    }
-                    video_qs += "background=" + video_background;
+            if (video_color.length > 0) {
+                if (video_qs.length > 0) {
+                    video_qs += "&";
                 }
+                video_qs += "color=" + video_color;
+            }
 
-                if (video_color.length > 0) {
-                    if (video_qs.length > 1) {
-                        video_qs += "&";
-                    }
-                    video_qs += "color=" + video_color;
+            if (video_controls.length > 0) {
+                if (video_qs.length > 0) {
+                    video_qs += "&";
                 }
+                video_qs += "controls=" + video_controls;
+            }
 
-                if (video_controls.length > 0) {
-                    if (video_qs.length > 1) {
-                        video_qs += "&";
-                    }
-                    video_qs += "controls=" + video_controls;
+            if (video_maxheight.length > 0) {
+                if (video_qs.length > 0) {
+                    video_qs += "&";
                 }
+                video_qs += "maxheight=" + video_maxheight;
+            }
 
-                if (video_maxheight.length > 0) {
-                    if (video_qs.length > 1) {
-                        video_qs += "&";
-                    }
-                    video_qs += "maxheight=" + video_maxheight;
+            if (video_maxwidth.length > 0) {
+                if (video_qs.length > 0) {
+                    video_qs += "&";
                 }
+                video_qs += "maxwidth=" + video_maxwidth;
+            }
 
-                if (video_maxwidth.length > 0) {
-                    if (video_qs.length > 1) {
-                        video_qs += "&";
-                    }
-                    video_qs += "maxwidth=" + video_maxwidth;
+            if (video_muted.length > 0) {
+                if (video_qs.length > 0) {
+                    video_qs += "&";
                 }
+                video_qs += "muted=" + video_muted;
+            }
 
-                if (video_muted.length > 0) {
-                    if (video_qs.length > 1) {
-                        video_qs += "&";
-                    }
-                    video_qs += "muted=" + video_muted;
+            if (video_playsinline.length > 0) {
+                if (video_qs.length > 0) {
+                    video_qs += "&";
                 }
+                video_qs += "playsinline=" + video_playsinline;
+            }
 
-                if (video_playsinline.length > 0) {
-                    if (video_qs.length > 1) {
-                        video_qs += "&";
-                    }
-                    video_qs += "playsinline=" + video_playsinline;
+            if (video_speed.length > 0) {
+                if (video_qs.length > 0) {
+                    video_qs += "&";
                 }
+                video_qs += "speed=" + video_speed;
+            }
 
-                if (video_speed.length > 0) {
-                    if (video_qs.length > 1) {
-                        video_qs += "&";
-                    }
-                    video_qs += "speed=" + video_speed;
+            if (video_transparent.length > 0) {
+                if (video_qs.length > 0) {
+                    video_qs += "&";
                 }
+                video_qs += "transparent=" + video_transparent;
+            }
 
-                if (video_transparent.length > 0) {
-                    if (video_qs.length > 1) {
-                        video_qs += "&";
-                    }
-                    video_qs += "transparent=" + video_transparent;
-                }
-
-
+            if (video_qs === "?") {
+                video_qs = "";
             }
 
             video_frame = '<iframe src="//player.vimeo.com/video/' + video_id + video_qs + '" ' + frame_width + frame_height + ' frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
@@ -2209,7 +2369,7 @@ tarteaucitron.services.atinternet = {
     "type": "analytic",
     "name": "AT Internet",
     "uri": "https://www.atinternet.com/societe/rgpd-et-vie-privee/",
-    "needConsent": true,
+    "needConsent": false,
     "cookies": ['atidvisitor', 'atreman', 'atredir', 'atsession', 'atuserid'],
     "js": function () {
         "use strict";
@@ -2449,9 +2609,11 @@ tarteaucitron.services.webmecanik = {
         if (tarteaucitron.user.webmecanikurl === undefined) {
             return;
         }
-        window['WebmecanikTrackingObject'] = 'mt';
-        window['mt'] = window['mt'] || function() {
-            (window['mt'].q = window['mt'].q || []).push(arguments);
+
+        window.WebmecanikTrackingObject = 'mt';
+        window.mt = window.mt || function () {
+            window.mt.q = window.mt.q || [];
+            window.mt.q.push(arguments);
         };
 
         tarteaucitron.addScript(tarteaucitron.user.webmecanikurl, '', function() {
@@ -2842,3 +3004,44 @@ tarteaucitron.services.youtubeapi = {
         tarteaucitron.addScript('https://www.youtube.com/player_api');
     }
 };
+
+// Facil'ITI
+tarteaucitron.services.faciliti = {
+    "key": "faciliti",
+    "type": "other",
+    "name": "Facil'ITI",
+    "uri": "https://ws.facil-iti.com/mentions-legales.html",
+    "needConsent": true,
+    "cookies": ['FACIL_ITI_LS'],
+    "js": function () {
+        "use strict";
+        if (tarteaucitron.user.facilitiID === undefined) {
+            return;
+        }
+
+        (function(w, d, s, f) {
+            w[f] = w[f] || {conf: function () { (w[f].data = w[f].data || []).push(arguments);}};
+            var l = d.createElement(s), e = d.getElementsByTagName(s)[0];
+            l.async = 1; l.src = 'https://ws.facil-iti.com/tag/faciliti-tag.min.js'; e.parentNode.insertBefore(l, e);
+        }(window, document, 'script', 'FACIL_ITI'));
+        FACIL_ITI.conf('userId', tarteaucitron.user.facilitiID);
+    }
+};
+
+// userlike
+tarteaucitron.services.userlike = {
+    "key": "userlike",
+    "type": "support",
+    "name": "Userlike",
+    "uri": "https://www.userlike.com/en/terms#privacy-policy",
+    "needConsent": true,
+    "cookies": ['uslk_s', 'uslk_e'],
+    "js": function () {
+        "use strict";
+        if (tarteaucitron.user.userlikeKey === undefined) {
+            return;
+        }
+        tarteaucitron.addScript('//userlike-cdn-widgets.s3-eu-west-1.amazonaws.com/' + tarteaucitron.user.userlikeKey);
+    }
+};
+
