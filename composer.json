@@ -15,7 +15,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "pringuin\\DataprivacyBundle\\": "src/pringuin/"
+      "pringuin\\": "src/pringuin/"
     }
   },
   "extra": {
