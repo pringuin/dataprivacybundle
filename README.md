@@ -119,12 +119,12 @@ Thanks!
 
 ## Updating
 
-### Updating from initial version or 0.1 to 0.2
+### Updating from initial version, 0.1 or 0.2 to 0.3
 
-To update from the first release or version 0.1 to 0.2 simply adapt your composer.json and run composer update as usually.
+To update from the first release or version 0.1/0.2 to 0.3 simply adapt your composer.json and run composer update as usually.
 Depending on your installation you might need to run the command
 `php bin/console assets:install web`
-to install the new tarteaucitron.js version (1.4 is now included) if you installed as hard copy.
+to install the new tarteaucitron.js version (1.8.4 is now included) if you installed as hard copy.
 
 ## Contributing
 While we consider this bundle stable and ready for productive use, we'd be very happy if you'd support us and the whole pimcore community by improving this bundle with pull requests. This is our first public pimcore bundle so constructive feedback would be very welcome aswell!
