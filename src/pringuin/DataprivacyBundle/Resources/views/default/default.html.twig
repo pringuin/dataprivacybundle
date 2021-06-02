@@ -83,6 +83,12 @@
         {% elseif configurationidentifier == 'zopimID' %}
             tarteaucitron.user.zopimID = '{{ configurationvalue }}';
             (tarteaucitron.job = tarteaucitron.job || []).push('zopim');
+        {% elseif configurationidentifier == 'youtube' and configurationvalue == 'true' %}
+            (tarteaucitron.job = tarteaucitron.job || []).push('youtube');
+        {% elseif configurationidentifier == 'vimeo' and configurationvalue == 'true' %}
+            (tarteaucitron.job = tarteaucitron.job || []).push('vimeo');
+        {% elseif configurationidentifier == 'dailymotion' and configurationvalue == 'true' %}
+            (tarteaucitron.job = tarteaucitron.job || []).push('dailymotion');
         {% endif %}
     {% endif %}
 {% endfor %}
