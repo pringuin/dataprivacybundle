@@ -14,7 +14,7 @@
         "adblocker": {{ configuration.adblocker }}, /* Show a Warning if an adblocker is detected */
 
         "showIcon": {{ configuration.showIcon }}, /* Show cookie icon to manage cookies */
-        "iconPosition": {{ configuration.iconPosition }}, /* Position of the icon between BottomRight, BottomLeft, TopRight and TopLeft */
+        "iconPosition": "{{ configuration.iconPosition }}", /* Position of the icon between BottomRight, BottomLeft, TopRight and TopLeft */
 
         "AcceptAllCta" : {{ configuration.AcceptAllCta }}, /* Show the accept all button when highPrivacy on */
         "highPrivacy": {{ configuration.highPrivacy }}, /* Disable auto consent */
@@ -83,6 +83,12 @@
         {% elseif configurationidentifier == 'zopimID' %}
             tarteaucitron.user.zopimID = '{{ configurationvalue }}';
             (tarteaucitron.job = tarteaucitron.job || []).push('zopim');
+        {% elseif configurationidentifier == 'youtube' and configurationvalue == 'true' %}
+            (tarteaucitron.job = tarteaucitron.job || []).push('youtube');
+        {% elseif configurationidentifier == 'vimeo' and configurationvalue == 'true' %}
+            (tarteaucitron.job = tarteaucitron.job || []).push('vimeo');
+        {% elseif configurationidentifier == 'dailymotion' and configurationvalue == 'true' %}
+            (tarteaucitron.job = tarteaucitron.job || []).push('dailymotion');
         {% endif %}
     {% endif %}
 {% endfor %}
