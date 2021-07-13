@@ -64,6 +64,37 @@ This package does currently ship with the following trackers/tools integrations:
 - Matomo (formerly Piwik)
 - Mautic
 - Zopim
+- YouTube
+- Vimeo
+- Dailymotion
+
+Note that you'll take care of the implementation of your video brick to make YouTube, Vimeo and Daily Motion work. 
+
+Sample code by [breakone](https://github.com/breakone):
+```twig
+{% set autoplay = autoplay.isChecked() ? true : false %}
+{% set loop = loop.isChecked() ? true : false %}
+{% set mute = muted.isChecked ? true: false %}
+
+{% set video = pimcore_video('video') %}
+
+{% if video.getVideoType == 'youtube' %}
+  <div class="pimcore_tag_video pimcore_editable_video ">
+    <div class="youtube_player" videoID="{{ video.id }}" width="{{ width }}" height="auto" theme="dark" rel="0" controls="1" showinfo="0" autoplay="{{ autoplay }}" mute="{{ mute }}" srcdoc="srcdoc" loop="{{ loop }}" loading="0"></div>
+  </div>
+{% elseif video.getVideoType == 'vimeo' %}
+  <div class="pimcore_tag_video pimcore_editable_video ">
+    <div class="vimeo_player" videoID="{{ video.id }}" width="{{ width }}" height="auto" autoplay="{{ autoplay }}" mute="{{ mute }}" loop="{{ loop }}"></div>
+  </div>
+{% elseif video.getVideoType == 'dailymotion' %}
+  <div class="pimcore_tag_video pimcore_editable_video ">
+    <div class="dailymotion_player" videoID="{{ video.id }}" width="{{ width }}" height="auto" showinfo="0" autoplay="{{ autoplay }}" embedType="video"></div>
+  </div>
+{% else %}
+  {{ video|raw }}
+{% endif %}
+```
+
 
 ### Add your own tracker or tool consent
 If a tracker or tool is missing, please check if the tool is integrated into [tarteaucitron.js](https://github.com/AmauriC/tarteaucitron.js) first.
