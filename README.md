@@ -161,15 +161,15 @@ Thanks!
 
 ## Updating
 
-### Updating from 0.3 to 0.4
+### Updating from 0.4 to 0.5
 
-To update to 0.4 simply adapt your composer.json and run composer update as usually.
+To update to 0.5 simply adapt your composer.json and run composer update as usually.
 Depending on your installation you might need to run the command
 `php bin/console assets:install web`
 to install the new tarteaucitron.js version (1.9.5 is now included) if you installed as hard copy.
 This release does also add a new defaultconfiguration setting. You might need to save your configuration again.
 
-### Updating from initial version, 0.1 or 0.2 to 0.3
+### Updating from initial version, 0.1, 0.2 or 0.3 to 0.4
 
 To update from the first release or version 0.1/0.2 to 0.3 simply adapt your composer.json and run composer update as usually.
 Depending on your installation you might need to run the command
