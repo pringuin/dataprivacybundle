@@ -50,6 +50,17 @@ Hint: You can always override this template by implementing your own template in
 
 ![Default Frontend Interface](docs/img/frontend_locale_cookie_consent.png)
 
+### Adaption of button colors
+You can always use your own css to override the default css of tarteaucitron. If you'd like to keep the default css but have all buttons in the same color (as required by TTDSG for example), you can use the following CSS:
+```css
+html body #tarteaucitronRoot #tarteaucitron .tarteaucitronAllow, html body #tarteaucitronRoot #tarteaucitron .tarteaucitronDeny,
+html body #tarteaucitronRoot #tarteaucitronAlertBig .tarteaucitronAllow, html body #tarteaucitronRoot #tarteaucitronAlertBig .tarteaucitronDeny, html body #tarteaucitronRoot #tarteaucitronAlertBig #tarteaucitronCloseAlert,
+#tarteaucitronAlertBig #tarteaucitronCloseAlert, #tarteaucitronAlertBig #tarteaucitronPersonalize, .tarteaucitronCTAButton, #tarteaucitron #tarteaucitronPrivacyUrl, #tarteaucitron #tarteaucitronPrivacyUrlDialog, #tarteaucitronRoot .tarteaucitronDeny {
+    background: black !important;
+    color: white !important;
+}
+```
+
 ## Supported Tackers and Tools
 This package does currently ship with the following trackers/tools integrations:
 - Crazy Egg
@@ -149,6 +160,14 @@ Test your implementation and please create a pull request in this repository so 
 Thanks!
 
 ## Updating
+
+### Updating from 0.3 to 0.4
+
+To update to 0.4 simply adapt your composer.json and run composer update as usually.
+Depending on your installation you might need to run the command
+`php bin/console assets:install web`
+to install the new tarteaucitron.js version (1.9.5 is now included) if you installed as hard copy.
+This release does also add a new defaultconfiguration setting. You might need to save your configuration again.
 
 ### Updating from initial version, 0.1 or 0.2 to 0.3
 
