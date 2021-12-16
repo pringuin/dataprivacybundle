@@ -2,6 +2,8 @@ Dataprivacy: "Data Protection"
 site: "Site"
 Submit: "Submit"
 general_explanation: "Set your data privacy settings here. You can set the current locale in all fields using %locale% dynamically."
+DenyAllCta: "Show Deny All Button"
+AcceptAllCta: "Show Accept All Button"
 
 crazyeggId: "Crazy Egg ID"
 google_analytics_ga_js: "Google Analytics (ga.js)"

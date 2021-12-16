@@ -2,6 +2,8 @@ Dataprivacy: "Datenschutz"
 site: "Seite"
 Submit: "Absenden"
 general_explanation: "Nachfolgend können Sie Ihre Einstellungen für den Datenschutz vornehmen. In allen Feldern können Sie die jeweilige Sprache über %locale% dynamisch setzen."
+DenyAllCta: "Alle Ablehnen Button anzeigen"
+AcceptAllCta: "Alle Akzeptieren Button anzeigen"
 
 crazyeggId: "Crazy Egg ID"
 google_analytics_ga_js: "Google Analytics (ga.js)"
