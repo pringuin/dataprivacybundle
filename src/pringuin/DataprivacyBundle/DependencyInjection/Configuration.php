@@ -17,8 +17,8 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('pringuin_dataprivacy');
+        $treeBuilder = new TreeBuilder('pringuin');
+        $rootNode = $treeBuilder->getRootNode('pringuin_dataprivacy');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for

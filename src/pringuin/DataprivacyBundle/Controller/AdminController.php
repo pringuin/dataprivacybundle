@@ -4,25 +4,19 @@ namespace pringuin\DataprivacyBundle\Controller;
 
 use Pimcore\Controller\FrontendController;
 use Pimcore\Tool\Authentication;
+use Pimcore\Translation\Translator;
 use pringuin\DataprivacyBundle\Helper\Configurationhelper;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends FrontendController
 {
 
-    public function onKernelController(FilterControllerEvent $event)
-    {
-        // set auto-rendering to twig
-        $this->setViewAutoRender($event->getRequest(), true, 'twig');
-    }
-
     /**
      * @Route("/pringuin_dataprivacy")
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, Translator $translator)
     {
         $user = Authentication::authenticateSession($request);
         if(!$user){
@@ -55,8 +49,7 @@ class AdminController extends FrontendController
                         if(is_iterable($configurationdata)){
                             $result = Configurationhelper::setConfigurationForSite($siteid,$configurationdata);
                             if($result){
-                                $responsemessage .= '<div>'.$this
-                                        ->get('translator')
+                                $responsemessage .= '<div>'.$translator
                                         ->trans(
                                             'configuration_save_success',
                                             ['%site%' => $siteid],
@@ -64,8 +57,7 @@ class AdminController extends FrontendController
                                         ).'</div>';
                             }
                             else{
-                                $responsemessage .= '<div>'.$this
-                                        ->get('translator')
+                                $responsemessage .= '<div>'.$translator
                                         ->trans(
                                             'configuration_save_fail',
                                             ['%site%' => $siteid],
@@ -93,10 +85,9 @@ class AdminController extends FrontendController
             }
         }
 
-        $this->view->message = $responsemessage;
-        $this->view->configurations = $configurations;
+        return $this->render('@pringuinDataprivacy/admin/index.html.twig', ['message' => $responsemessage, 'configurations' => $configurations]);
 
-        //return new Response('Hello world from pringuin_dataprivacy');
+
     }
 
 

@@ -1,6 +1,8 @@
 # Dataprivacy Bundle for Pimcore
 Add dataprivacy features (GDPR / DSGVO) to Pimcore
 
+Version 1.x can be used for Pimcore X, use Version 0.X ([branch pimcore-6](https://github.com/pringuin/dataprivacybundle/tree/pimcore-6)) for Pimcore 5/6
+
 ## Features
 * Does support multiple domains (using Pimcore sites)
 * Easy installation in pimcore projects (drop-in-solution)
@@ -10,7 +12,7 @@ Add dataprivacy features (GDPR / DSGVO) to Pimcore
 ![Backend Interface](docs/img/localized_admin_interface.png)
 
 ## Dependencies
-This bundle does include the great script [tarteaucitron.js](https://github.com/AmauriC/tarteaucitron.js) in the `pringuin/DataprivacyBundle/Resources/public/js/tarteaucitron` folder. 
+This bundle does include the great script [tarteaucitron.js](https://github.com/AmauriC/tarteaucitron.js) in the `pringuin/DataprivacyBundle/Resources/public/js/tarteaucitron` folder.
 
 ## Installation
 
@@ -19,7 +21,7 @@ This bundle does include the great script [tarteaucitron.js](https://github.com/
 
 ```json
 "require": {
-    "pringuin/dataprivacybundle" : "dev-master"
+"pringuin/dataprivacybundle" : "^1.0"
 }
 ```
 
@@ -44,7 +46,7 @@ You can also change these files directly using your favorite IDE. They can be ar
 ### Installation into your template
 To include the cookie consent into your frontend layout, you can use the following twig code. Simply insert it into your template (e.g. layout.html.twig) before the closing body Tag:
 ```twig
-{{ pimcore_action('default', 'default', 'pringuinDataprivacyBundle', {}) }}
+{{ render(controller('pringuin\\DataprivacyBundle\\Controller\\DefaultController::defaultAction', [])) }}
 ```
 Hint: You can always override this template by implementing your own template in the folder `PIMCOREINSTALLATION/app/Resources/pringuinDataprivacyBundle/views/default/default.html.twig`
 
@@ -79,7 +81,7 @@ This package does currently ship with the following trackers/tools integrations:
 - Vimeo
 - Dailymotion
 
-Note that you'll take care of the implementation of your video brick to make YouTube, Vimeo and Daily Motion work. 
+Note that you'll take care of the implementation of your video brick to make YouTube, Vimeo and Daily Motion work.
 
 Sample code by [breakone](https://github.com/breakone):
 ```twig
@@ -115,20 +117,20 @@ If the tracker or tool **is not** included into the tarteaucitron.js package, pl
 Alternatively you can directly include your custom service using this example code from tarteaucitron.js:
 ```js
 tarteaucitron.services.mycustomservice = {
-  "key": "mycustomservice",
-  "type": "social|analytic|ads|video|support",
-  "name": "MyCustomService",
-  "needConsent": true,
-  "cookies": ['cookie', 'cookie2'],
-  "readmoreLink": "/custom_read_more", // If you want to change readmore link
-  "js": function () {
-    "use strict";
-    // When user allow cookie
-  },
-  "fallback": function () {
-    "use strict";
-    // when use deny cookie
-  }
+    "key": "mycustomservice",
+    "type": "social|analytic|ads|video|support",
+    "name": "MyCustomService",
+    "needConsent": true,
+    "cookies": ['cookie', 'cookie2'],
+    "readmoreLink": "/custom_read_more", // If you want to change readmore link
+    "js": function () {
+        "use strict";
+        // When user allow cookie
+    },
+    "fallback": function () {
+        "use strict";
+        // when use deny cookie
+    }
 };
 (tarteaucitron.job = tarteaucitron.job || []).push('mycustomservice');
 ```
@@ -160,6 +162,26 @@ Test your implementation and please create a pull request in this repository so 
 Thanks!
 
 ## Updating
+
+### Updating from 0.5 to 1.0
+
+1.0 is the first release for Pimcore X. Simply adapt your composer.json and run composer update as usually. 
+
+Since pimcore removed the pimcore_action from the twig template, you'll have to adjust your template installation.
+
+Before:
+
+```twig
+{{ pimcore_action('default', 'default', 'pringuinDataprivacyBundle', {}) }}
+```
+
+Now:
+
+```twig
+{{ render(controller('pringuin\\DataprivacyBundle\\Controller\\DefaultController::defaultAction', [])) }}
+```
+
+You might also need to save your configuration again.
 
 ### Updating from 0.4 to 0.5
 

@@ -10,7 +10,7 @@ abstract class Configurationhelper {
     /**
      * @var string
      */
-    private static $configurationPath = PIMCORE_APP_ROOT . '/config/pringuin_dataprivacy';
+    private static $configurationPath = PIMCORE_PROJECT_ROOT . '/config/pringuin_dataprivacy';
 
     /**
      * @param String $site
