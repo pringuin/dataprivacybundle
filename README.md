@@ -1,7 +1,9 @@
 # Dataprivacy Bundle for Pimcore
 Add dataprivacy features (GDPR / DSGVO) to Pimcore
 
-Version 1.x can be used for Pimcore X, use Version 0.X ([branch pimcore-6](https://github.com/pringuin/dataprivacybundle/tree/pimcore-6)) for Pimcore 5/6
+Version 2.x can be used for Pimcore 11
+Use Version 1.x ([branch pimcore-x](https://github.com/pringuin/dataprivacybundle/tree/pimcore-x)) for Pimcore X
+Use Version 0.X ([branch pimcore-6](https://github.com/pringuin/dataprivacybundle/tree/pimcore-6)) for Pimcore 5/6
 
 ## Features
 * Does support multiple domains (using Pimcore sites)
@@ -12,7 +14,7 @@ Version 1.x can be used for Pimcore X, use Version 0.X ([branch pimcore-6](https
 ![Backend Interface](docs/img/localized_admin_interface.png)
 
 ## Dependencies
-This bundle does include the great script [tarteaucitron.js](https://github.com/AmauriC/tarteaucitron.js) in the `pringuin/DataprivacyBundle/Resources/public/js/tarteaucitron` folder.
+This bundle does include the [tarteaucitron.js](https://github.com/AmauriC/tarteaucitron.js) script in the `pringuin/DataprivacyBundle/Resources/public/js/tarteaucitron` folder.
 
 ## Installation
 
@@ -21,24 +23,27 @@ This bundle does include the great script [tarteaucitron.js](https://github.com/
 
 ```json
 "require": {
-"pringuin/dataprivacybundle" : "^1.0"
+"pringuin/dataprivacybundle" : "^2.0"
 }
 ```
 
-### Installation via Extension Manager
-After you have installed the Dataprivacy Bundle via composer, open the pimcore administration backend and go to `Tools` => `Extension`:
-- Click the green `+` Button in `Enable / Disable` row
-- Click the green `+` Button in `Install/Uninstall` row
+### Add the bundle
+Add the bundle to your Kernel in src/Kernel.php like this:
+```php
+public function registerBundlesToCollection(BundleCollection $collection): void
+{
+$collection->addBundle(new pringuinDataprivacyBundle(), 70);
+}
+```
 
-### Installation via CommandLine
+### Install the assets
 After you have installed the Dataprivacy Bundle via composer:
-- Execute: `$ bin/console pimcore:bundle:enable pringuinDataprivacyBundle`
-- Execute: `$ bin/console pimcore:bundle:install pringuinDataprivacyBundle`
+- Execute: `$ bin/console assets:install`
 
 ### Configure trackers, tools and services
 The backend configuration should now be available. below the search in your pimcore admin backend.
 You can set your tracking IDs (for example your UA-XXXXXXXX-X) there.
-This will generate files in the folder `PIMCOREINSTALLATION/app/config/pringuin_dataprivacy`.
+This will generate files in the folder `PIMCOREINSTALLATION/config/pringuin_dataprivacy`.
 The file for the default site will be `siteconfig_default.yml`
 The next sites will follow the pimcore IDs and look like `siteconfig_1.yml`, `siteconfig_2.yml`.
 You can also change these files directly using your favorite IDE. They can be archived using git.
@@ -163,6 +168,14 @@ Thanks!
 
 ## Updating
 
+### Updating from 1.0 to 2.0
+
+2.0 is the first release for Pimcore 11. Simply adapt your composer.json and run composer update as usually.
+
+Execute: `$ bin/console assets:install` if it's not run by composer
+
+You might also need to save your configuration again.
+
 ### Updating from 0.5 to 1.0
 
 1.0 is the first release for Pimcore X. Simply adapt your composer.json and run composer update as usually. 
@@ -199,7 +212,7 @@ Depending on your installation you might need to run the command
 to install the new tarteaucitron.js version (1.8.4 is now included) if you installed as hard copy.
 
 ## Contributing
-While we consider this bundle stable and ready for productive use, we'd be very happy if you'd support us and the whole pimcore community by improving this bundle with pull requests. This is our first public pimcore bundle so constructive feedback would be very welcome aswell!
+While we consider this bundle stable and ready for productive use, we'd be very happy if you'd support us and the whole pimcore community by improving this bundle with pull requests. This is our first public pimcore bundle so constructive feedback would be very welcome as well!
 
 ## Copyright and license
 Copyright: [PRinguin GbR](https://pringuin.de)  

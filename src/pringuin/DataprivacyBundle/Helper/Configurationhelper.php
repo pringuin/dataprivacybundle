@@ -16,7 +16,8 @@ abstract class Configurationhelper {
      * @param String $site
      * @return string
      */
-    public static function getConfigurationFileForSite(string $site) {
+    public static function getConfigurationFileForSite(string $site): string
+    {
         $file = self::$configurationPath . '/siteconfig_' . $site . '.yml';
 
         if(!is_file($file)){
@@ -35,7 +36,8 @@ abstract class Configurationhelper {
      * @param String $site
      * @return array
      */
-    public static function getConfigurationForSite(string $site) {
+    public static function getConfigurationForSite(string $site): array
+    {
 
         $filename = self::getConfigurationFileForSite($site);
 
@@ -54,7 +56,8 @@ abstract class Configurationhelper {
      * @param array $configuration
      * @return boolean
      */
-    public static function setConfigurationForSite(string $site, array $configuration) {
+    public static function setConfigurationForSite(string $site, array $configuration): bool
+    {
 
         $filename = self::getConfigurationFileForSite($site);
 
@@ -71,7 +74,8 @@ abstract class Configurationhelper {
     /**
      * @return string
      */
-    public static function getDefaultConfigFile(){
+    public static function getDefaultConfigFile(): string
+    {
         try{
             return __DIR__.'/../Resources/var/defaultconfiguration.yml';
         }
@@ -83,7 +87,8 @@ abstract class Configurationhelper {
     /**
      * @return array
      */
-    public static function getDefaultConfig(){
+    public static function getDefaultConfig(): array
+    {
         $filename = self::getDefaultConfigFile();
 
         try {

@@ -7,6 +7,7 @@ use Pimcore\Tool\Authentication;
 use Pimcore\Translation\Translator;
 use pringuin\DataprivacyBundle\Helper\Configurationhelper;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -16,7 +17,7 @@ class AdminController extends FrontendController
     /**
      * @Route("/pringuin_dataprivacy")
      */
-    public function indexAction(Request $request, Translator $translator)
+    public function indexAction(Request $request, Translator $translator): Response
     {
         $user = Authentication::authenticateSession($request);
         if(!$user){
@@ -44,8 +45,8 @@ class AdminController extends FrontendController
         if($request->isMethod('post')){
             if(is_iterable($allsites)) {
                 foreach ($allsites as $siteid) {
-                    if($request->request->get($siteid)){
-                        $configurationdata = $request->request->get($siteid);
+                    if($request->get($siteid)){
+                        $configurationdata = $request->get($siteid);
                         if(is_iterable($configurationdata)){
                             $result = Configurationhelper::setConfigurationForSite($siteid,$configurationdata);
                             if($result){

@@ -8,19 +8,19 @@ class pringuinDataprivacyBundle extends AbstractPimcoreBundle
 {
     const PACKAGE_NAME = 'pringuin/dataprivacybundle';
 
-    public function getJsPaths()
+    public function getJsPaths(): array
     {
         return [
             '/bundles/pringuindataprivacy/js/pimcore/startup.js'
         ];
     }
 
-    public function getNiceName()
+    public function getNiceName(): string
     {
         return 'Dataprivacy Bundle';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return 'Dataprivacy Bundle for Pimcore';
     }

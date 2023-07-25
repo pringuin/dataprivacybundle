@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends FrontendController
 {
 
-    public function defaultAction(Request $request)
+    public function defaultAction(Request $request): Response
     {
         if(\Pimcore\Model\Site::isSiteRequest()) {
             $site = \Pimcore\Model\Site::getCurrentSite()->getId();

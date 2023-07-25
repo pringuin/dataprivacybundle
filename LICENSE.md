@@ -1,5 +1,5 @@
 # License
-Copyright (C) 2019 PRinguin GbR (Daniel Brinkmann & Lennart Fries)
+Copyright (C) 2023 PRinguin GbR (Daniel Brinkmann & Lennart Fries)
 
 This software is available under the GNU General Public License version 3 (GPLv3).
 

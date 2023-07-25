@@ -22,3 +22,8 @@ services:
 #            - "@service_id"
 #            - "plain_value"
 #            - "%parameter%"
+        
+    pringuin\DataprivacyBundle\EventListener\PimcoreAdminListener:
+        tags:
+            #- { name: kernel.event_listener, event: pimcore.bundle_manager.paths.css, method: addCSSFiles }
+            - { name: kernel.event_listener, event: pimcore.bundle_manager.paths.js, method: addJSFiles }
