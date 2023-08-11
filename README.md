@@ -35,6 +35,10 @@ public function registerBundlesToCollection(BundleCollection $collection): void
 $collection->addBundle(new pringuinDataprivacyBundle(), 70);
 }
 ```
+You might also need to add it to pimcores config/bundles.php:
+```php
+    \pringuin\DataprivacyBundle\pringuinDataprivacyBundle::class => ['all' => true],
+```
 
 ### Install the assets
 After you have installed the Dataprivacy Bundle via composer:
