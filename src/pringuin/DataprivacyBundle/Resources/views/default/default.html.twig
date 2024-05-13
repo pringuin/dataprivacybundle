@@ -42,7 +42,7 @@
             tarteaucitron.user.gtagMore = function () { /* add here your optionnal gtag() */ };
             (tarteaucitron.job = tarteaucitron.job || []).push('gtag');
         {% elseif configurationidentifier == 'google_analytics_gtag_js_multiple' %}
-            tarteaucitron.user.multiplegtagUa = [{{ configurationvalue }}];
+            tarteaucitron.user.multiplegtagUa = [{{ configurationvalue | raw }}];
             (tarteaucitron.job = tarteaucitron.job || []).push('multiplegtag');
         {% elseif configurationidentifier == 'google_analytics_universal' %}
             tarteaucitron.user.analyticsUa = '{{ configurationvalue }}';
