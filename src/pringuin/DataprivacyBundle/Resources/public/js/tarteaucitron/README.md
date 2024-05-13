@@ -69,7 +69,11 @@ tarteaucitron.init({
     "mandatory": true, /* Show a message about mandatory cookies */
     "mandatoryCta": true, /* Show the disabled accept button when mandatory on */
     
-    // "customCloserId": "" /* Optional a11y: Custom element ID used to open the panel */
+    // "customCloserId": "", /* Optional a11y: Custom element ID used to open the panel */
+
+    "googleConsentMode": true, /* Enable Google Consent Mode v2 for Google ads and GA4 */
+    
+    "partnersList": false /* Details the number of partners on the popup and middle banner */
 });
 </script>
 ```
