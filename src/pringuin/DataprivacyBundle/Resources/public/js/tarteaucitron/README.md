@@ -39,13 +39,14 @@ tarteaucitron.init({
     "orientation": "middle", /* Banner position (top - bottom - middle - popup) */
 
     "groupServices": false, /* Group services by category */
+    "showDetailsOnClick": true, /* Click to expand the description */
     "serviceDefaultState": "wait", /* Default state (true - wait - false) */
 
     "showAlertSmall": false, /* Show the small banner on bottom right */
     "cookieslist": false, /* Show the cookie list */
     
     "showIcon": true, /* Show cookie icon to manage cookies */
-    // "iconSrc": "", /* Optionnal: URL or base64 encoded image */
+    // "iconSrc": "", /* Optional: URL or base64 encoded image */
     "iconPosition": "BottomRight", /* Position of the icon between BottomRight, BottomLeft, TopRight and TopLeft */
 
     "adblocker": false, /* Show a Warning if an adblocker is detected */
@@ -61,12 +62,18 @@ tarteaucitron.init({
     "useExternalCss": false, /* If false, the tarteaucitron.css file will be loaded */
     "useExternalJs": false, /* If false, the tarteaucitron.services.js file will be loaded */
 
-    //"cookieDomain": ".my-multisite-domaine.fr", /* Shared cookie for subdomain website */
+    // "cookieDomain": ".my-multisite-domaine.fr", /* Shared cookie for subdomain website */
 
     "readmoreLink": "", /* Change the default readmore link pointing to tarteaucitron.io */
     
     "mandatory": true, /* Show a message about mandatory cookies */
-    "mandatoryCta": true /* Show the disabled accept button when mandatory on */
+    "mandatoryCta": true, /* Show the disabled accept button when mandatory on */
+    
+    // "customCloserId": "", /* Optional a11y: Custom element ID used to open the panel */
+
+    "googleConsentMode": true, /* Enable Google Consent Mode v2 for Google ads and GA4 */
+    
+    "partnersList": false /* Details the number of partners on the popup and middle banner */
 });
 </script>
 ```
