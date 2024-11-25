@@ -1,6 +1,6 @@
 
 [![](https://data.jsdelivr.com/v1/package/npm/tarteaucitronjs/badge)](https://www.jsdelivr.com/package/npm/tarteaucitronjs)
-[![npm](https://img.shields.io/npm/v/tarteaucitronjs.svg)](https://www.npmjs.com/package/tarteaucitronjs) [![GitHub contributors](https://img.shields.io/github/contributors/AmauriC/tarteaucitron.js.svg)](https://github.com/AmauriC/tarteaucitron.js/graphs/contributors) [![Sponsor](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub)](https://github.com/sponsors/AmauriC) [![Rate this package](https://badges.openbase.com/js/rating/tarteaucitronjs.svg?token=jS4mC7aXh9xcs1pAcB0roiEUU+mrW0GjxVICITIltSw=)](https://openbase.com/js/tarteaucitronjs?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge)
+[![npm](https://img.shields.io/npm/v/tarteaucitronjs.svg)](https://www.npmjs.com/package/tarteaucitronjs) [![GitHub contributors](https://img.shields.io/github/contributors/AmauriC/tarteaucitron.js.svg)](https://github.com/AmauriC/tarteaucitron.js/graphs/contributors) [![Sponsor](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub)](https://github.com/sponsors/AmauriC) 
 
 
 ![alt text](https://tarteaucitron.io/tarteaucitron.png "tarteaucitron.io")
@@ -54,7 +54,8 @@ tarteaucitron.init({
     "DenyAllCta" : true, /* Show the deny all button */
     "AcceptAllCta" : true, /* Show the accept all button when highPrivacy on */
     "highPrivacy": true, /* HIGHLY RECOMMANDED Disable auto consent */
-
+    "alwaysNeedConsent": false, /* Ask the consent for "Privacy by design" services */
+    
     "handleBrowserDNTRequest": false, /* If Do Not Track == 1, disallow all */
 
     "removeCredit": false, /* Remove credit link */
@@ -139,9 +140,9 @@ tarteaucitronCustomText = {
 
 # Thanks to the sponsors 😊
 
-| ![Amaury Cleuziou](https://avatars.githubusercontent.com/u/26336203?v=4&s=60) | ![Peak Crypto](https://tarteaucitron.io/img/logo_peakcrypto.png)  |   |
+| ![Amaury Cleuziou](https://avatars.githubusercontent.com/u/26336203?v=4&s=60) |  |   |
 |---|---|---|
-|  [Amaury Cleuziou](https://github.com/MoryCorp) - first sponsor 🎉 | [Peak Crypto](https://www.peakcrypto.com/) |  |
+|  [Amaury Cleuziou](https://github.com/MoryCorp) - first sponsor 🎉 |  |  |
 | |   |   |
 
 

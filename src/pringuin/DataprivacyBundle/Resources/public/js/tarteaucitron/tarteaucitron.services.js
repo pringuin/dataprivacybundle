@@ -38,6 +38,151 @@ tarteaucitron.services.iframe = {
     }
 };
 
+// tolkaigenii
+tarteaucitron.services.tolkaigenii = {
+    "key": "tolkaigenii",
+    "type": "support",
+    "name": "Tolk.ai Genii",
+    "uri": "https://www.tolk.ai/",
+    "needConsent": true,
+    "cookies": [],
+    "js": function () {
+        "use strict";
+
+        if (tarteaucitron.user.tolkaiGeniiProject === undefined) {
+            return;
+        }
+
+        tarteaucitron.addScript('https://genii-script.tolk.ai/lightchat.js', 'lightchat-bot', '', '', 'project-id', tarteaucitron.user.tolkaiGeniiProject);
+    }
+};
+
+// seamlessaccess
+tarteaucitron.services.seamlessaccess = {
+    "key": "seamlessaccess",
+    "type": "api",
+    "name": "Seamlessaccess",
+    "uri": "https://seamlessaccess.org/about/trust/",
+    "needConsent": true,
+    "cookies": [],
+    "js": function () {
+        "use strict";
+        if (tarteaucitron.user.seamlessaccessInitiator === undefined) {
+            return;
+        }
+        var uniqIds = [];
+        tarteaucitron.fallback(['seamlessaccess_button'], function(x) {
+            var uniqId = x.getAttribute('id');
+            if (uniqId === undefined) {
+                uniqId = '_' + Math.random().toString(36).substr(2, 9);
+                x.setAttribute('id', uniqId);
+            }
+            uniqIds.push(uniqId);
+            x.innerHTML = '';
+        }, true);
+        tarteaucitron.addScript('//service.seamlessaccess.org/thiss.js', 'seamlessaccessjs', function() {
+            for (var i = 0; i < uniqIds.length; i += 1) {
+                thiss.DiscoveryComponent.render({
+                    loginInitiatorURL: tarteaucitron.user.seamlessaccessInitiator,
+                }, '#' + uniqIds[i]);
+            }
+        });
+    },
+    "fallback": function () {
+        "use strict";
+        var id = 'seamlessaccess';
+        tarteaucitron.fallback(['seamlessaccess_button'], tarteaucitron.engage(id));
+    }
+};
+
+// reddit
+tarteaucitron.services.reddit = {
+    "key": "reddit",
+    "type": "ads",
+    "name": "Reddit",
+    "uri": "https://business.reddithelp.com/helpcenter/s/article/Reddit-Advertising-Policy-Overview",
+    "needConsent": true,
+    "cookies": [],
+    "js": function () {
+        "use strict";
+
+        if (tarteaucitron.user.redditInit === undefined) {
+            return;
+        }
+
+        !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);rdt('init',tarteaucitron.user.redditInit, {"aaid":tarteaucitron.user.redditAAID,"externalId":tarteaucitron.user.redditExternalId,"idfa":tarteaucitron.user.redditIDFA});rdt('track', 'PageVisit');
+    }
+};
+
+// zoho
+tarteaucitron.services.zoho = {
+    "key": "zoho",
+    "type": "support",
+    "name": "Zoho SalesIQ",
+    "uri": "https://www.zoho.com/gdpr.html",
+    "needConsent": true,
+    "cookies": [],
+    "js": function () {
+        "use strict";
+
+        if (tarteaucitron.user.zohoWidgetCode === undefined) {
+            return;
+        }
+
+        var $zoho=$zoho || {};
+        $zoho.salesiq = $zoho.salesiq || {widgetcode:tarteaucitron.user.zohoWidgetCode, values:{},ready:function(){}};
+        tarteaucitron.addScript('https://salesiq.zoho.eu/widget');
+    }
+};
+
+// teads
+tarteaucitron.services.teads = {
+    "key": "teads",
+    "type": "ads",
+    "name": "Teads",
+    "uri": "https://privacy-policy.teads.com",
+    "needConsent": true,
+    "cookies": [],
+    "js": function () {
+        "use strict";
+
+        if (tarteaucitron.user.teadsBuyerPixelId === undefined) {
+            return;
+        }
+
+        tarteaucitron.addScript('https://p.teads.tv/teads-fellow.js');
+
+        window.teads_e = window.teads_e || [];
+        window.teads_buyer_pixel_id = tarteaucitron.user.teadsBuyerPixelId;
+    }
+};
+
+// thetradedesk
+tarteaucitron.services.thetradedesk = {
+    "key": "thetradedesk",
+    "type": "ads",
+    "name": "TheTradeDesk",
+    "uri": "https://www.thetradedesk.com/fr/privacy",
+    "needConsent": true,
+    "cookies": [],
+    "js": function () {
+        "use strict";
+
+        if (tarteaucitron.user.thetradedeskAdvertiserId === undefined || tarteaucitron.user.thetradedeskUpixelId === undefined) {
+            return;
+        }
+
+        tarteaucitron.addScript('https://js.adsrvr.org/up_loader.1.1.0.js', '', function() {
+            ttd_dom_ready( function() {
+                if (typeof TTDUniversalPixelApi === 'function') {
+                    var universalPixelApi = new TTDUniversalPixelApi();
+                    universalPixelApi.init(tarteaucitron.user.thetradedeskAdvertiserId, [tarteaucitron.user.thetradedeskUpixelId], "https://insight.adsrvr.org/track/up");
+                }
+            });
+        });
+    }
+};
+
 // gcmanalyticsstorage
 tarteaucitron.services.gcmanalyticsstorage = {
     "key": "gcmanalyticsstorage",
@@ -128,7 +273,7 @@ tarteaucitron.services.gcmadsuserdata = {
 tarteaucitron.services.gcmpersonalization = {
     "key": "gcmpersonalization",
     "type": "google",
-    "name": "Storage",
+    "name": "Personalization",
     "uri": "https://policies.google.com/privacy",
     "needConsent": true,
     "cookies": [],
@@ -257,7 +402,9 @@ tarteaucitron.services.screeb = {
 
         tarteaucitron.addScript('https://t.screeb.app/tag.js', '$screeb');
 
-        window.$screeb('init', tarteaucitron.user.screebId);
+        if (tarteaucitron.user.screebDontInit !== true) {
+            window.$screeb('init', tarteaucitron.user.screebId);
+        }
     }
 };
 
@@ -2215,7 +2362,7 @@ tarteaucitron.services.clarity = {
     "name": "Clarity",
     "uri": "https://clarity.microsoft.com/",
     "needConsent": true,
-    "cookies": [],
+    "cookies": ['_clck', '_clsk', 'CLID', 'ANONCHK', 'MR', 'MUID', 'SM'],
     "js": function () {
         "use strict";
 
@@ -4153,7 +4300,7 @@ tarteaucitron.services.slideshare = {
                 id = tarteaucitron.getElemAttr(x, "data-id"),
                 width = tarteaucitron.getElemAttr(x, "width"),
                 height = tarteaucitron.getElemAttr(x, "height"),
-                url = '//www.slideshare.net/slideshow/embed_code/' + id;
+                url = '//www.slideshare.net/slideshow/embed_code/key/' + id;
 
             return '<iframe title="' + frame_title + '" src="' + url + '" width="' + width + '" height="' + height + '" scrolling="no" allowtransparency allowfullscreen></iframe>';
         });
@@ -5183,6 +5330,11 @@ tarteaucitron.services.multiplegtag = {
                 });
             });
         }
+    },
+    "fallback": function () {
+        if (tarteaucitron.parameters.googleConsentMode === true) {
+            this.js();
+        }
     }
 };
 
@@ -5345,8 +5497,15 @@ tarteaucitron.services.matomocloud = {
         window._paq.push(["setConsentGiven"]);
         window._paq.push(["setSiteId", tarteaucitron.user.matomoId]);
         window._paq.push(["setTrackerUrl", tarteaucitron.user.matomoHost + "matomo.php"]);
-        window._paq.push(["trackPageView"]);
         window._paq.push(["enableLinkTracking"]);
+
+        if (tarteaucitron.user.matomoDontTrackPageView !== true) {
+            window._paq.push(["trackPageView"]);
+        }
+
+        if (tarteaucitron.user.matomoFullTracking === true) {
+            window._paq.push(["trackAllContentImpressions"]);
+        }
 
         if (tarteaucitron.user.matomoCustomJSPath === undefined || tarteaucitron.user.matomoCustomJSPath == '') {
             tarteaucitron.addScript('https://cdn.matomo.cloud/matomo.js', '', '', true, 'defer', true);
@@ -6572,9 +6731,31 @@ tarteaucitron.services.tiktok = {
             return;
         }
 
-        tarteaucitron.addScript('https://analytics.tiktok.com/i18n/pixel/sdk.js?sdkid=' + tarteaucitron.user.tiktokId);
+        !function (w, d, t) {
+            w.TiktokAnalyticsObject = t;
+            var ttq = w[t] = w[t] || [];
+            ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie"], ttq.setAndDefer = function (t, e) {
+                t[e] = function () {
+                    t.push([e].concat(Array.prototype.slice.call(arguments, 0)))
+                }
+            };
+            for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
+            ttq.instance = function (t) {
+                for (var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++) ttq.setAndDefer(e, ttq.methods[n]);
+                return e
+            }, ttq.load = function (e, n) {
+                var i = "https://analytics.tiktok.com/i18n/pixel/events.js";
+                ttq._i = ttq._i || {}, ttq._i[e] = [], ttq._i[e]._u = i, ttq._t = ttq._t || {}, ttq._t[e] = +new Date, ttq._o = ttq._o || {}, ttq._o[e] = n || {};
+                var o = document.createElement("script");
+                o.type = "text/javascript", o.async = !0, o.src = i + "?sdkid=" + e + "&lib=" + t;
+                var a = document.getElementsByTagName("script")[0];
+                a.parentNode.insertBefore(o, a)
+            };
+            ttq.load(tarteaucitron.user.tiktokId);
+            ttq.page();
+        }(window, document, 'ttq');
 
-        if (typeof tarteaucitron.user.tiktokMore === 'function') {
+        if (typeof tarteaucitron.user.tiktokMore === "function") {
             tarteaucitron.user.tiktokMore();
         }
     }
