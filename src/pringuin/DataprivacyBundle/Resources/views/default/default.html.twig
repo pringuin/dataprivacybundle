@@ -1,4 +1,4 @@
-{% do pimcore_head_script().appendFile(asset('bundles/pringuindataprivacy/js/tarteaucitron/tarteaucitron.js')) %}
+<script src="{{ asset('bundles/pringuindataprivacy/js/tarteaucitron/tarteaucitron.js') }}"></script>
 <script>
     tarteaucitron.init({
         "privacyUrl": "{{ configuration.privacyUrl }}", /* Privacy policy url */
