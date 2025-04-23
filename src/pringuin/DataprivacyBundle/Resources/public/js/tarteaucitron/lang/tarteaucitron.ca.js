@@ -15,6 +15,7 @@ tarteaucitron.lang = {
     "personalize": "Personalitzar",
     "acceptAll": "OK, acceptar totes",
     "close": "Tancar",
+    "closeBanner": "Amaga el banner de galetes",
 
     "privacyUrl": "Política de privacitat",
     
@@ -89,6 +90,6 @@ tarteaucitron.lang = {
     "mandatoryTitle": "Galetes obligatòries",
     "mandatoryText": "Aquest lloc utilitza galetes necessàries per al seu correcte funcionament que no es poden desactivar (cookies tècniques).",
 
-    "save": "Desarregar",
+    "save": "Desar",
     "ourpartners": "Els nostres socis"
 };
