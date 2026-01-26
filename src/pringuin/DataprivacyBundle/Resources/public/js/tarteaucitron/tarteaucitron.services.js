@@ -35,6 +35,31 @@ tarteaucitron.services.iframe = {
     }
 };
 
+// clickdimensions
+tarteaucitron.services.clickdimensions = {
+    "key": "clickdimensions",
+    "type": "ads",
+    "name": "Click Dimensions",
+    "uri": "https://clickdimensions.com/legal/privacy-policy/",
+    "needConsent": true,
+    "cookies": [],
+    "js": function () {
+        "use strict";
+
+        if (tarteaucitron.user.clickdimensionsAccountKey === undefined || tarteaucitron.user.clickdimensionsDomain === undefined) {
+            return;
+        }
+
+        tarteaucitron.addScript('https://analytics-eu.clickdimensions.com/ts.js', '', function() {
+            var cdAnalytics = new clickdimensions.Analytics('analytics-eu.clickdimensions.com');
+            cdAnalytics.setAccountKey(tarteaucitron.user.clickdimensionsAccountKey);
+            cdAnalytics.setDomain(tarteaucitron.user.clickdimensionsDomain);
+            cdAnalytics.setScore(typeof(cdScore) == "undefined" ? 0 : (cdScore == 0 ? null : cdScore));
+            cdAnalytics.trackPage();
+        });
+    }
+};
+
 // madmetrics
 tarteaucitron.services.madmetrics = {
     "key": "madmetrics",
@@ -231,7 +256,14 @@ tarteaucitron.services.tolkaigenii = {
             return;
         }
 
-        tarteaucitron.addScript('https://genii-script.tolk.ai/lightchat.js', 'lightchat-bot', '', '', 'project-id', tarteaucitron.user.tolkaiGeniiProject);
+        var script;
+        script = document.createElement('script');
+        script.id = "lightchat-bot";
+        script.src = "https://genii-script.tolk.ai/lightchat.js";
+        script.async = true;
+        script.setAttribute("type", "module");
+        script.setAttribute("project-id", tarteaucitron.user.tolkaiGeniiProject);
+        document.getElementsByTagName('head')[0].appendChild(script);
     }
 };
 
@@ -2370,28 +2402,6 @@ tarteaucitron.services.aduptech_retargeting = {
         };
 
         tarteaucitron.addScript(API_URL);
-    }
-};
-
-// alexa
-tarteaucitron.services.alexa = {
-    "key": "alexa",
-    "type": "analytic",
-    "name": "Alexa",
-    "uri": "https://www.alexa.com/help/privacy",
-    "needConsent": true,
-    "cookies": ['__asc', '__auc'],
-    "js": function () {
-        "use strict";
-        if (tarteaucitron.user.alexaAccountID === undefined) {
-            return;
-        }
-        window._atrk_opts = {
-            atrk_acct: tarteaucitron.user.alexaAccountID,
-            domain: window.location.hostname.match(/[^\.]*\.[^.]*$/)[0],
-            dynamic: true
-        };
-        tarteaucitron.addScript('https://d31qbv1cthcecs.cloudfront.net/atrk.js');
     }
 };
 
@@ -5569,7 +5579,7 @@ tarteaucitron.services.issuu = {
             }
 
 
-            if (issuu_id.match(/\d+\/\d+/)) { issuu_embed = '#' + issuu_id; } else if (issuu_id.match(/d=(.*)&u=(.*)/)) { issuu_embed = '?' + issuu_id; }
+            if (issuu_id.match(/^\d+\/\d+$/)) { issuu_embed = '#' + issuu_id; } else { issuu_embed = '?' + issuu_id; }
 
 
             issuu_frame = '<iframe title="' + frame_title + '" style="' + styleAttr + '" src="//e.issuu.com/embed.html' + issuu_embed + '"></iframe>';
