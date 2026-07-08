@@ -1,7 +1,15 @@
 # Dataprivacy Bundle for Pimcore
 Add dataprivacy features (GDPR / DSGVO) to Pimcore
 
-Version 1.x can be used for Pimcore X, use Version 0.X ([branch pimcore-6](https://github.com/pringuin/dataprivacybundle/tree/pimcore-6)) for Pimcore 5/6
+> ℹ️ **Deprecation note** This project is for Pimcore 11 and if you do not use our Pimcore 11-lts version you already have security wholes in your pimcore instance.
+> We will not update this bundle for Pimcore 12 due to licensing issues - we highly recommend switching to OpenDXP instead if you do not want to upgrade to pimcore 12.
+> Our bundle is available for OpenDXP [here](https://github.com/pringuin/opendxp-dataprivacybundle)
+
+
+Version 2.x can be used for Pimcore 11
+
+Version 1.x can be used for Pimcore X, use Version 0.X ([branch pimcore-6](https://github.com/pringuin/dataprivacybundle/tree/pimcore-6)) for Pimcore 5/6.
+Note that 0.X and 1.X will not receive updates anymore.
 
 ## Features
 * Does support multiple domains (using Pimcore sites)
