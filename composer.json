@@ -26,7 +26,7 @@
     }
   },
   "require": {
-    "pimcore/pimcore": "^11",
+    "pringuin/pimcore-11-lts": "^11.5.19",
     "php":"^8.0"
   }
 }
